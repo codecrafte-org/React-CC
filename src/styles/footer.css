@@ -1,0 +1,270 @@
+/* ==================================================
+   1. TRANSITION & SECTION SETUP
+   ================================================== */
+.torn-footer-transition {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  line-height: 0;
+  margin-bottom: -1px;
+}
+
+.black-torn-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.footer-section {
+  position: relative;
+  background-color: #030303;
+  color: #ffffff;
+  padding: 40px 0 30px;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.footer-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 5;
+}
+
+/* ==================================================
+   2. BACKGROUND MARQUEE TEXT (EXACT OPACITY & BLEND)
+   ================================================== */
+.footer-bg-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0.08;
+  z-index: 1;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.slanted-up {
+  transform: rotate(-3deg) scale(1.1);
+}
+
+.slanted-down {
+  transform: rotate(3deg) scale(1.1);
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: marquee-anim 35s linear infinite;
+  padding-right: 50px;
+}
+
+@keyframes marquee-anim {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==================================================
+   3. BENTO GRID (MATCHING DESIGN 2)
+   ================================================== */
+.footer-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.bento-tile {
+  background: #0d0d0f;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.mini-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Grid Layout Spans */
+.cta-box { grid-column: span 7; min-height: 250px; }
+.social-box { grid-column: span 5; }
+.links-box { grid-column: span 4; }
+.contact-box { grid-column: span 8; }
+.bottom-bar { grid-column: span 12; padding: 18px 28px; }
+
+/* ==================================================
+   4. CONTENT ELEMENTS
+   ================================================== */
+/* CTA Tile */
+.cta-box h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.cta-box .highlight-text {
+  color: #0070f3;
+}
+
+.cta-desc {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 22px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  width: fit-content;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.footer-btn:hover {
+  transform: translateY(-2px);
+  background-color: #f0f0f0;
+}
+
+/* Social Tile */
+.social-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  height: 100%;
+  align-content: center;
+}
+
+.s-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.s-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Links Tile */
+.link-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-columns a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.link-columns a:hover {
+  color: #ffffff;
+}
+
+/* Reach Us Tile */
+.contact-grid-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.contact-details-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.c-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
+}
+
+.contact-map {
+  width: 100%;
+  height: 110px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bottom Bar */
+.footer-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ==================================================
+   5. MOBILE RESPONSIVE FIXES
+   ================================================== */
+@media (max-width: 900px) {
+  .cta-box, .social-box, .links-box, .contact-box {
+    grid-column: span 12;
+  }
+  
+  .contact-grid-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-map {
+    height: 140px;
+  }
+  
+  .marquee {
+    font-size: 3rem;
+  }
+}

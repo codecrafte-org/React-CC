@@ -1,0 +1,139 @@
+/* ==========================================
+   CODECRAFTE - TRUST DEEP SECTION STYLES
+   ========================================== */
+
+.trust-deep-section {
+  position: relative;
+  background: var(--text-light, #ffffff);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.bg-ghost-text {
+  position: absolute;
+  font-size: 15vw;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.03);
+  white-space: nowrap;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tape-container {
+  position: absolute;
+  width: 140%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.deep-tape {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-top: 2px solid var(--text-dark, #000);
+  border-bottom: 2px solid var(--text-dark, #000);
+}
+
+.blur-effect {
+  filter: blur(4px);
+  opacity: 0.8;
+}
+
+.tape-yellow {
+  background: var(--primary-color, #0070f3);
+  color: var(--text-dark, #000);
+  transform: rotate(-12deg) translateY(-80px);
+}
+
+.tape-black {
+  background: var(--text-dark, #000);
+  color: var(--primary-color, #0070f3);
+  transform: rotate(8deg) translateY(40px);
+}
+
+.tape-scroll,
+.tape-scroll-reverse {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll-tape 20s linear infinite;
+}
+
+.tape-scroll-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes scroll-tape {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.main-sharp-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.impact-text {
+  font-family: var(--font-main, "Space Grotesk", sans-serif);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 900;
+  color: var(--text-dark, #000);
+  line-height: 0.9;
+  letter-spacing: -3px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.outline-txt {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text-dark, #000);
+}
+
+.sub-impact {
+  font-size: 1.2rem;
+  color: var(--text-muted, #a7a7a7);
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .trust-deep-section {
+    height: 70vh;
+  }
+
+  .deep-tape {
+    height: 50px;
+    font-size: 1rem;
+  }
+
+  .impact-text {
+    font-size: 3.5rem;
+    letter-spacing: -1px;
+  }
+
+  .bg-ghost-text {
+    font-size: 25vw;
+  }
+
+  .tape-yellow {
+    transform: rotate(-15deg) translateY(-40px);
+  }
+
+  .tape-black {
+    transform: rotate(12deg) translateY(20px);
+  }
+}

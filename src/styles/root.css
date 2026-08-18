@@ -1,0 +1,46 @@
+/* ==========================================
+   GLOBAL ROOT STYLES & CSS VARIABLES
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
+:root {
+  /* Brand Colors */
+  --primary-color: #0066ff;
+  --primary-hover: #0052cc;
+  --secondary-color: #7c3aed;
+  
+  /* Accent Colors */
+  --accent-green: #10b981;
+  --accent-green-bg: rgba(16, 185, 129, 0.12);
+  
+  /* Text Colors */
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #ffffff;
+  
+  /* Backgrounds & Glassmorphism */
+  --bg-main: #f8fafc;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
