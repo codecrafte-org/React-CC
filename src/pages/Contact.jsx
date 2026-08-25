@@ -1,4 +1,4 @@
-import ContactHero from '../sections/contact/contacthero';
+import ContactHero from '../sections/contact/ContactHero';
 import From from '../sections/contact/From';
 
 const Contact = () => {

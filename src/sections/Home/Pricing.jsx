@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import '../../styles/pricing.css';
+import '../../styles/Pricing.css';
 
 const Pricing = () => {
   const sectionRef = useRef(null);
