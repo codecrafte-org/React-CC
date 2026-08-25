@@ -25,7 +25,7 @@ import Scrollstop from './components/ScrollToTop.jsx'
 
 function App() {
   return (
-    <Router basename="/React-CC">
+    <Router>
       <AI />
       <Feedback />
       <ScreenSaver />
