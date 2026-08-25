@@ -50,9 +50,9 @@ const AI = () => {
           right: 28px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
           z-index: 99999;
-          font-family: var(--font-family, system-ui, -apple-system, sans-serif);
+          font-family: var(--font-main, system-ui, -apple-system, sans-serif);
         }
 
         .dock-item {
@@ -62,29 +62,27 @@ const AI = () => {
           justify-content: flex-end;
         }
 
-        /* iOS-STYLE FROSTED GLASS TOOLTIP */
+        /* ELEGANT TOOLTIP (NO NEON GLOW) */
         .dock-tooltip {
           position: absolute;
-          right: calc(100% + 14px);
+          right: calc(100% + 12px);
           display: flex;
           align-items: center;
           gap: 8px;
-          background: rgba(15, 23, 42, 0.75);
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: #0f172a;
+          border: 1px solid rgba(255, 255, 255, 0.1);
           color: #f8fafc;
-          padding: 8px 14px;
-          border-radius: 14px;
+          padding: 7px 13px;
+          border-radius: 10px;
           font-size: 13px;
           font-weight: 500;
           letter-spacing: -0.2px;
           white-space: nowrap;
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
           opacity: 0;
           pointer-events: none;
-          transform: translateX(10px) scale(0.96);
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transform: translateX(8px);
+          transition: all 0.25s ease;
         }
 
         .dock-tooltip::after {
@@ -95,13 +93,13 @@ const AI = () => {
           transform: translateY(-50%);
           border-width: 5px 0 5px 5px;
           border-style: solid;
-          border-color: transparent transparent transparent rgba(15, 23, 42, 0.75);
+          border-color: transparent transparent transparent #0f172a;
         }
 
         .dock-item:hover .dock-tooltip,
         .dock-tooltip.auto-show {
           opacity: 1;
-          transform: translateX(0) scale(1);
+          transform: translateX(0);
         }
 
         .tooltip-status-dot {
@@ -109,117 +107,79 @@ const AI = () => {
           height: 6px;
           background-color: #10b981;
           border-radius: 50%;
-          box-shadow: 0 0 8px #10b981;
-          animation: pulseStatus 2s infinite ease-in-out;
+          display: inline-block;
         }
 
-        @keyframes pulseStatus {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(1.3); }
-        }
-
-        /* BASE GLASS BUTTONS (iPHONE GLASS STYLE) */
+        /* CLEAN STATIC BUTTON BASE */
         .dock-btn {
-          width: 54px;
-          height: 54px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          border: 1px solid rgba(255, 255, 255, 0.18);
           outline: none;
           text-decoration: none;
           position: relative;
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
-          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
         }
 
         .dock-btn:hover {
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
         }
 
         .dock-btn:active {
-          transform: translateY(-1px) scale(0.97);
+          transform: translateY(0);
         }
 
-        /* ELEGANT AI BUTTON (DARK GLASS + SUBTLE AURORA GLOW) */
+        /* AI BUTTON - STATIC MATCHING WEBSITE DARK THEME */
         .ai-dock-btn {
-          background: rgba(15, 23, 42, 0.82);
-          color: #f8fafc;
+          background: #0f172a;
+          color: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* Subtle Rotating AI Aura Ring */
-        .ai-dock-btn::before {
-          content: "";
-          position: absolute;
-          inset: -2px;
-          border-radius: 50%;
-          background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #6366f1);
-          z-index: -1;
-          opacity: 0.55;
-          filter: blur(6px);
-          transition: opacity 0.3s ease;
-          animation: aiAuraRotate 6s linear infinite;
-        }
-
-        .ai-dock-btn:hover::before {
-          opacity: 0.9;
-          filter: blur(10px);
-        }
-
-        @keyframes aiAuraRotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        .ai-dock-btn:hover {
+          background: #1e293b;
+          border-color: rgba(255, 255, 255, 0.25);
         }
 
         .ai-icon {
-          width: 24px;
-          height: 24px;
-          transition: transform 0.4s ease;
+          width: 22px;
+          height: 22px;
+          transition: transform 0.25s ease;
         }
 
         .ai-dock-btn:hover .ai-icon {
-          transform: scale(1.12) rotate(12deg);
+          transform: scale(1.08);
         }
 
-        /* WHATSAPP BUTTON (DARK GLASS + CLEAN EMERALD ACCENT) */
+        /* WHATSAPP BUTTON - CLEAN SOLID DESIGN */
         .whatsapp-dock-btn {
-          background: rgba(15, 23, 42, 0.82);
+          background: #0f172a;
           color: #25D366;
+          border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .whatsapp-dock-btn::before {
-          content: "";
-          position: absolute;
-          inset: -1px;
-          border-radius: 50%;
-          background: #25D366;
-          z-index: -1;
-          opacity: 0.35;
-          filter: blur(6px);
-          transition: opacity 0.3s ease;
-        }
-
-        .whatsapp-dock-btn:hover::before {
-          opacity: 0.75;
-          filter: blur(10px);
+        .whatsapp-dock-btn:hover {
+          background: #1e293b;
+          border-color: rgba(37, 211, 102, 0.4);
         }
 
         .whatsapp-icon {
-          width: 25px;
-          height: 25px;
-          transition: transform 0.3s ease;
+          width: 23px;
+          height: 23px;
+          transition: transform 0.25s ease;
         }
 
         .whatsapp-dock-btn:hover .whatsapp-icon {
-          transform: scale(1.12);
+          transform: scale(1.08);
         }
 
-        /* MOBILE OPTIMIZATIONS */
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
           .side-action-dock {
             bottom: 20px;
@@ -228,13 +188,13 @@ const AI = () => {
           }
 
           .dock-btn {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
           }
 
           .ai-icon, .whatsapp-icon {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
           }
         }
       `}</style>

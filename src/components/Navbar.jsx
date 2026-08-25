@@ -2,18 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../assets/fav-ion.webp';
 
-// Custom Minimal Icons
-const ArrowUpRight = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="7" y1="17" x2="17" y2="7" />
-    <polyline points="7 7 17 7 17 17" />
-  </svg>
-);
-
-const UserIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
+// Minimal Call Icon
+const PhoneIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>
 );
 
@@ -47,8 +39,7 @@ const Navbar = () => {
           --primary-color: #0066ff;
           --primary-hover: #0052cc;
           --text-dark: #0f172a;
-          --text-muted: #64748b;
-          --text-light: #ffffff;
+          --text-muted: #475569;
           --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -63,7 +54,6 @@ const Navbar = () => {
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* WHEN SCROLLED: Header attaches seamlessly to the top */
         .nb-header.scrolled {
           padding: 0;
         }
@@ -81,7 +71,7 @@ const Navbar = () => {
           padding: 0;
         }
 
-        /* GLASSMORPHISM DOCK */
+        /* LIQUID GLOSSY GLASS DOCK (TRANSLUCENT & BLURRED) */
         .nb-dock {
           position: relative;
           display: flex;
@@ -92,31 +82,48 @@ const Navbar = () => {
           padding: 0 12px 0 24px;
           border-radius: 100px;
           
-          /* FROSTED GLASS BACKGROUND WITH BLUR */
-          background: rgba(255, 255, 255, 0.65);
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          /* Semi-transparent Glass Tint */
+          background: rgba(255, 255, 255, 0.35);
+          backdrop-filter: blur(20px) saturate(190%);
+          -webkit-backdrop-filter: blur(20px) saturate(190%);
           
-          border: 1px solid rgba(255, 255, 255, 0.5);
-          box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07);
+          /* Glossy Glass Highlights & Borders */
+          border: 1px solid rgba(255, 255, 255, 0.55);
+          box-shadow: 
+            inset 0 1px 2px rgba(255, 255, 255, 0.8),
+            inset 0 -1px 2px rgba(0, 0, 0, 0.05),
+            0 15px 35px -10px rgba(15, 23, 42, 0.12);
           box-sizing: border-box;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          overflow: hidden;
         }
 
-        /* SCROLLED DOCK: Border becomes 0, edge-to-edge top bar with continuous blur */
+        /* Glossy Reflection Curve (Matches Image Glass Highlight) */
+        .nb-dock::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 3%;
+          width: 25%;
+          height: 45%;
+           border-radius: 100px 100px 50px 50px;
+          pointer-events: none;
+        }
+
+        /* SCROLLED DOCK */
         .nb-header.scrolled .nb-dock {
           border-radius: 0;
           border: none;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-          background: rgba(255, 255, 255, 0.75);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+          background: rgba(255, 255, 255, 0.55);
           backdrop-filter: blur(25px) saturate(200%);
           -webkit-backdrop-filter: blur(25px) saturate(200%);
-          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
           padding: 0 32px;
           height: 68px;
         }
 
-        /* LOGO */
+        /* LOGO (BLACK TEXT) */
         .nb-logo {
           display: flex;
           align-items: center;
@@ -136,7 +143,7 @@ const Navbar = () => {
           font-weight: 800;
           font-size: 1.15rem;
           letter-spacing: -0.5px;
-          color: var(--text-dark);
+          color: #0f172a; /* Black Color */
         }
 
         /* CENTERED NAV LINKS */
@@ -147,17 +154,17 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           gap: 4px;
-          background: rgba(15, 23, 42, 0.04);
+          background: rgba(15, 23, 42, 0.06);
           padding: 4px;
           border-radius: 100px;
-          border: 1px solid rgba(15, 23, 42, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .nav-link {
           padding: 8px 20px;
           font-size: 0.88rem;
           font-weight: 600;
-          color: var(--text-muted);
+          color: #334155;
           text-decoration: none;
           border-radius: 100px;
           transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -165,67 +172,50 @@ const Navbar = () => {
         }
 
         .nav-link:hover {
-          color: var(--text-dark);
-          background: rgba(255, 255, 255, 0.8);
+          color: #0f172a;
+          background: rgba(255, 255, 255, 0.6);
         }
 
         .nav-link.active {
-          color: var(--text-light) !important;
-          background: var(--text-dark) !important;
-          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+          color: #ffffff !important;
+          background: #0f172a !important;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
         }
 
-        /* AUTH BUTTONS */
+        /* BOOK A CALL BUTTON */
         .nb-actions {
           display: flex;
           align-items: center;
-          gap: 8px;
           z-index: 2;
         }
 
-        .btn-login {
+        .btn-book-call {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 9px 18px;
+          padding: 10px 22px;
           font-size: 0.88rem;
-          font-weight: 600;
-          color: var(--text-dark);
+          font-weight: 700;
+          color: #ffffff;
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
           text-decoration: none;
           border-radius: 100px;
-          transition: all 0.25s ease;
-        }
-
-        .btn-login:hover {
-          background: rgba(15, 23, 42, 0.05);
-          color: var(--primary-color);
-        }
-
-        .btn-signup {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          padding: 9px 20px;
-          font-size: 0.88rem;
-          font-weight: 600;
-          color: var(--text-light);
-          background: linear-gradient(135deg, var(--primary-color) 0%, #004ecc 100%);
-          text-decoration: none;
-          border-radius: 100px;
-          box-shadow: 0 6px 18px -2px rgba(0, 102, 255, 0.38);
+          box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
           transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .btn-signup:hover {
+        .btn-book-call:hover {
           transform: translateY(-1px) scale(1.02);
-          box-shadow: 0 8px 22px -2px rgba(0, 102, 255, 0.48);
+          background: linear-gradient(135deg, #0066ff 0%, #004ecc 100%);
+          box-shadow: 0 8px 22px rgba(0, 102, 255, 0.35);
         }
 
         /* MOBILE MENU TOGGLE */
         .nb-mobile-trigger {
           display: none;
-          background: rgba(15, 23, 42, 0.04);
-          border: 1px solid rgba(15, 23, 42, 0.05);
+          background: rgba(15, 23, 42, 0.08);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           cursor: pointer;
           padding: 10px;
           border-radius: 50%;
@@ -240,7 +230,7 @@ const Navbar = () => {
         .nb-burger-dot {
           width: 5px;
           height: 5px;
-          background: var(--text-dark);
+          background: #0f172a;
           border-radius: 50%;
         }
 
@@ -268,7 +258,7 @@ const Navbar = () => {
           transform: translateX(-50%) translateY(120%);
           width: calc(100% - 32px);
           max-width: 420px;
-          background: rgba(255, 255, 255, 0.92);
+          background: rgba(255, 255, 255, 0.85);
           backdrop-filter: blur(24px);
           -webkit-backdrop-filter: blur(24px);
           border: 1px solid rgba(255, 255, 255, 0.6);
@@ -287,7 +277,7 @@ const Navbar = () => {
         }
 
         .mobile-link {
-          color: var(--text-muted);
+          color: #475569;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
@@ -296,36 +286,30 @@ const Navbar = () => {
         }
 
         .mobile-link.active, .mobile-link:hover {
-          color: var(--text-dark);
+          color: #0f172a;
           background: rgba(15, 23, 42, 0.05);
         }
 
-        .mobile-auth-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
+        .mobile-action-wrapper {
           margin-top: 10px;
           padding-top: 14px;
           border-top: 1px solid rgba(15, 23, 42, 0.08);
         }
 
-        .mobile-auth-btn {
-          text-align: center;
-          padding: 12px;
+        .mobile-btn-call {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          padding: 13px;
           border-radius: 100px;
-          font-size: 0.9rem;
-          font-weight: 600;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #ffffff;
+          background: #0f172a;
           text-decoration: none;
-        }
-
-        .m-login {
-          color: var(--text-dark);
-          background: rgba(15, 23, 42, 0.05);
-        }
-
-        .m-signup {
-          color: var(--text-light);
-          background: var(--primary-color);
+          box-sizing: border-box;
         }
 
         @media (max-width: 968px) {
@@ -367,14 +351,11 @@ const Navbar = () => {
               ))}
             </nav>
 
-            {/* AUTH ACTIONS */}
+            {/* BOOK A CALL ACTION */}
             <div className="nb-actions">
-              <Link to="/login" className="btn-login">
-                <UserIcon /> Log In
-              </Link>
-              <Link to="/signup" className="btn-signup">
-                <span>Sign Up</span>
-                <ArrowUpRight />
+              <Link to="/contact" className="btn-book-call">
+                <PhoneIcon />
+                <span>Book a Call</span>
               </Link>
             </div>
 
@@ -407,12 +388,10 @@ const Navbar = () => {
             {item.label}
           </Link>
         ))}
-        <div className="mobile-auth-grid">
-          <Link to="/login" className="mobile-auth-btn m-login" onClick={closeMenu}>
-            Log In
-          </Link>
-          <Link to="/signup" className="mobile-auth-btn m-signup" onClick={closeMenu}>
-            Sign Up
+        <div className="mobile-action-wrapper">
+          <Link to="/contact" className="mobile-btn-call" onClick={closeMenu}>
+            <PhoneIcon />
+            <span>Book a Call</span>
           </Link>
         </div>
       </div>

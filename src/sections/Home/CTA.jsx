@@ -88,7 +88,7 @@ const CTA = () => {
 
         .cc-cta-subtext {
           font-size: 1rem;
-          color: var(--text-muted, #94a3b8);
+          color: #c3d4ee;
           line-height: 1.6;
           margin: 0;
           font-weight: 400;

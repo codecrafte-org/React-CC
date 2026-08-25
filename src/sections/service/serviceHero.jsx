@@ -65,15 +65,15 @@ const ServiceHero = () => {
           --radius-full: 100px;
         }
 
-        /* HERO CONTAINER & PERFECT CENTER GRID */
+        /* PERFECT FULL-SCREEN CENTER CONTAINER */
         .sh-container {
           width: 100%;
-          min-height: 80vh;
+          min-height: 100vh;
           background: var(--bg-main);
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 80px 8%;
+          padding: 0 8%;
           box-sizing: border-box;
           font-family: var(--font-main);
           overflow: hidden;
@@ -82,7 +82,8 @@ const ServiceHero = () => {
 
         .sh-content-grid {
           width: 100%;
-          max-width: 1200px;
+          max-width: 1140px;
+          margin: 0 auto;
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
           gap: 60px;
@@ -92,17 +93,34 @@ const ServiceHero = () => {
           z-index: 2;
         }
 
-        /* FADE-IN ENTRANCE ANIMATION */
+        /* ENHANCED SMOOTH FADE-IN ANIMATION WITH STAGGER */
         .sh-fade-in {
-          animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          opacity: 0;
+          animation: smoothFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        @keyframes fadeInUp {
-          from {
+        .sh-fade-delay-1 {
+          animation-delay: 0.1s;
+        }
+
+        .sh-fade-delay-2 {
+          animation-delay: 0.25s;
+        }
+
+        .sh-fade-delay-3 {
+          animation-delay: 0.4s;
+        }
+
+        .sh-fade-delay-4 {
+          animation-delay: 0.3s;
+        }
+
+        @keyframes smoothFadeUp {
+          0% {
             opacity: 0;
-            transform: translateY(25px);
+            transform: translateY(30px);
           }
-          to {
+          100% {
             opacity: 1;
             transform: translateY(0);
           }
@@ -133,7 +151,7 @@ const ServiceHero = () => {
         .sk-button { width: 260px; height: 42px; border-radius: var(--radius-full); }
         .sk-cube { width: 220px; height: 220px; border-radius: 36px; margin: 0 auto; }
 
-        /* REAL CONTENT STYLING (CENTERED ALIGNED) */
+        /* REAL CONTENT STYLING */
         .sh-left {
           display: flex;
           flex-direction: column;
@@ -255,11 +273,27 @@ const ServiceHero = () => {
 
         /* RESPONSIVE STYLING */
         @media (max-width: 968px) {
-          .sh-container { padding: 60px 5%; }
-          .sh-content-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-          .sh-left { align-items: center; text-align: center; }
-          .sh-isometric-wrapper { width: 260px; height: 260px; }
-          .sh-stack-container { width: 180px; height: 180px; }
+          .sh-container {
+            min-height: 100vh;
+            padding: 80px 5%;
+          }
+          .sh-content-grid { 
+            grid-template-columns: 1fr; 
+            gap: 40px; 
+            text-align: center; 
+          }
+          .sh-left { 
+            align-items: center; 
+            text-align: center; 
+          }
+          .sh-isometric-wrapper { 
+            width: 260px; 
+            height: 260px; 
+          }
+          .sh-stack-container { 
+            width: 180px; 
+            height: 180px; 
+          }
         }
       `}</style>
 
@@ -280,19 +314,19 @@ const ServiceHero = () => {
               </div>
             </>
           ) : (
-            /* REAL CONTENT WITH SMOOTH FADE-IN */
+            /* REAL CONTENT WITH SMOOTH STAGGERED FADE-IN */
             <>
-              <div className="sh-left sh-fade-in">
-                <h1 className="sh-main-title">
+              <div className="sh-left">
+                <h1 className="sh-main-title sh-fade-in sh-fade-delay-1">
                   Pick a plan that's <br /> right for you
                 </h1>
 
-                <p className="sh-description">
+                <p className="sh-description sh-fade-in sh-fade-delay-2">
                   Pricing plans for businesses at all stages of growth. Codecrafte
                   has a plan that can fit your exact technical requirements.
                 </p>
 
-                <div className="sh-rating-badge">
+                <div className="sh-rating-badge sh-fade-in sh-fade-delay-3">
                   <span className="sh-star-icon">
                     <StarIcon />
                   </span>
@@ -300,7 +334,7 @@ const ServiceHero = () => {
                 </div>
               </div>
 
-              <div className="sh-right sh-fade-in">
+              <div className="sh-right sh-fade-in sh-fade-delay-4">
                 <div className="sh-isometric-wrapper">
                   <div
                     className="sh-stack-container"

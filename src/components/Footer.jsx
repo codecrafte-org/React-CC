@@ -588,12 +588,12 @@ const Footer = () => {
             <div>
               <h4 className="ft-col-title">Services</h4>
               <ul className="ft-link-list">
-                <li><Link to="/services#web-development" className="ft-link-item">Web Development</Link></li>
-                <li><Link to="/services#mobile-apps" className="ft-link-item">Mobile App Dev</Link></li>
-                <li><Link to="/services#ui-ux" className="ft-link-item">UI/UX Design</Link></li>
-                <li><Link to="/services#cloud" className="ft-link-item">Cloud & DevOps</Link></li>
-                <li><Link to="/services#ai" className="ft-link-item">AI Solutions</Link></li>
-                <li><Link to="/services#cybersecurity" className="ft-link-item">Cybersecurity</Link></li>
+                <li><Link to="/services/web-development" className="ft-link-item">Web Development</Link></li>
+                <li><Link to="/services/app-development" className="ft-link-item">Mobile App Dev</Link></li>
+                <li><Link to="/services/ui-ux-design" className="ft-link-item">UI/UX Design</Link></li>
+                <li><Link to="/services/devops-engineering" className="ft-link-item">Cloud & DevOps</Link></li>
+                <li><Link to="/services/ai-automation" className="ft-link-item">AI Solutions</Link></li>
+                <li><Link to="/services/video-editing" className="ft-link-item">Vide Editing</Link></li>
               </ul>
             </div>
 
@@ -601,8 +601,6 @@ const Footer = () => {
             <div>
               <h4 className="ft-col-title">Company & Legal</h4>
               <ul className="ft-link-list">
-                <li><Link to="/about" className="ft-link-item">About Us</Link></li>
-                <li><Link to="/careers" className="ft-link-item">Careers</Link></li>
                 <li><Link to="/terms" className="ft-link-item">Term & Condition</Link></li>
                 <li><Link to="/privacy" className="ft-link-item">Privacy Policy</Link></li>
                 <li><Link to="/refund" className="ft-link-item">Refund Policy</Link></li>

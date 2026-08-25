@@ -1,30 +1,29 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/root.css";
 
 // SVG Icons
 const TechOverlayIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
   </svg>
 );
 
 const ClockIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
+    <polyline points="12 6 12 16 14" />
   </svg>
 );
 
 const TeamIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
     <circle cx="9" cy="7" r="4" />
   </svg>
 );
 
 const LevelIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
@@ -41,7 +40,7 @@ const TOP_SERVICES_ROW_1 = [
     team: "3 Devs",
     level: "Enterprise",
     tags: ["React", "Node.js", "+5"],
-    link: "/services/web"
+    link: "/services/web-development"
   },
   {
     id: 2,
@@ -53,7 +52,7 @@ const TOP_SERVICES_ROW_1 = [
     team: "4 Devs",
     level: "Pro Stack",
     tags: ["Flutter", "React Native", "+3"],
-    link: "/services/app"
+    link: "/services/app-development"
   },
   {
     id: 3,
@@ -65,7 +64,7 @@ const TOP_SERVICES_ROW_1 = [
     team: "2 Designers",
     level: "Figma Pro",
     tags: ["Figma", "Design System", "+4"],
-    link: "/services/uiux"
+    link: "/services//ui-ux-design"
   },
   {
     id: 4,
@@ -77,7 +76,7 @@ const TOP_SERVICES_ROW_1 = [
     team: "3 Engineers",
     level: "LLM Custom",
     tags: ["OpenAI", "LangChain", "+4"],
-    link: "/services/ai"
+    link: "/services//ai-automation"
   }
 ];
 
@@ -92,7 +91,7 @@ const TOP_SERVICES_ROW_2 = [
     team: "3 Devs",
     level: "Shopify / Custom",
     tags: ["Shopify", "Stripe", "+5"],
-    link: "/services/ecom"
+    link: "/services/ecommerce-stores"
   },
   {
     id: 6,
@@ -104,7 +103,7 @@ const TOP_SERVICES_ROW_2 = [
     team: "5 Devs",
     level: "Fullsuite",
     tags: ["SQL", "Dashboard", "+6"],
-    link: "/services/pms"
+    link: "/services/management-systems"
   },
   {
     id: 7,
@@ -116,7 +115,7 @@ const TOP_SERVICES_ROW_2 = [
     team: "5 Devs",
     level: "SaaS Stack",
     tags: ["Next.js", "AWS", "+6"],
-    link: "/services/csd"
+    link: "/services/saas-application"
   },
   {
     id: 8,
@@ -128,7 +127,7 @@ const TOP_SERVICES_ROW_2 = [
     team: "2 Engineers",
     level: "Cloud Scale",
     tags: ["Docker", "Kubernetes", "+5"],
-    link: "/contact"
+    link: "/services/devops-engineering"
   }
 ];
 
@@ -186,7 +185,7 @@ const Services = () => {
       <style>{`
         .home-services-section {
           width: 100%;
-          padding: 80px 0;
+          padding: 70px 0;
           background: var(--bg-main, #fcfcfd);
           font-family: var(--font-family, sans-serif);
           overflow: hidden;
@@ -196,7 +195,7 @@ const Services = () => {
         .services-intro {
           text-align: center;
           max-width: 700px;
-          margin: 0 auto 50px auto;
+          margin: 0 auto 40px auto;
           padding: 0 20px;
         }
 
@@ -206,19 +205,19 @@ const Services = () => {
           font-weight: 700;
           letter-spacing: 1.5px;
           color: var(--text-muted, #666666);
-          margin-bottom: 12px;
+          margin-bottom: 10px;
           text-transform: uppercase;
         }
 
         .services-intro h2 {
-           font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 10px 0;
-  text-transform: uppercase;
-  color: var(--text-dark, #000000);
+          font-size: clamp(2rem, 5vw, 3rem);
+          margin: 8px 0;
+          text-transform: uppercase;
+          color: var(--text-dark, #000000);
         }
 
         .services-subhead {
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: var(--text-muted, #666666);
           line-height: 1.6;
         }
@@ -229,7 +228,7 @@ const Services = () => {
           width: 100%;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
         }
 
         .marquee-wrapper::before,
@@ -238,8 +237,8 @@ const Services = () => {
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 15%;
-          max-width: 200px;
+          width: 12%;
+          max-width: 180px;
           z-index: 10;
           pointer-events: none;
         }
@@ -263,7 +262,7 @@ const Services = () => {
 
         .marquee-track {
           display: flex;
-          gap: 24px;
+          gap: 20px;
           flex-shrink: 0;
           will-change: transform;
         }
@@ -282,42 +281,42 @@ const Services = () => {
 
         @keyframes marqueeScrollLeft {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-50% - 12px)); }
+          100% { transform: translateX(calc(-50% - 10px)); }
         }
 
         @keyframes marqueeScrollRight {
-          0% { transform: translateX(calc(-50% - 12px)); }
+          0% { transform: translateX(calc(-50% - 10px)); }
           100% { transform: translateX(0); }
         }
 
-        /* CARD STYLING */
+        /* CARD STYLING (OPTIMIZED SIZE) */
         .as-card {
-          width: 360px;
-           flex-shrink: 0;
+          width: 280px;
+          flex-shrink: 0;
           background: var(--bg-surface, #ffffff);
           border: 1px solid var(--border-light, #eaeaea);
-          border-radius: var(--radius-lg, 24px);
-          padding: 16px;
+          border-radius: var(--radius-lg, 20px);
+          padding: 12px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          box-shadow: var(--shadow-subtle, 0 8px 30px rgba(0,0,0,0.03));
+          box-shadow: var(--shadow-subtle, 0 6px 20px rgba(0,0,0,0.03));
           transition: border-color 0.3s ease, transform 0.3s ease;
           box-sizing: border-box;
         }
 
         .as-card:hover {
           border-color: var(--text-primary, #000000);
-          transform: translateY(-6px);
+          transform: translateY(-5px);
         }
 
         .as-img-wrapper {
           position: relative;
           width: 100%;
-          height: 180px;
-          border-radius: 16px;
+          height: 140px;
+          border-radius: 14px;
           overflow: hidden;
-          margin-bottom: 16px;
+          margin-bottom: 12px;
         }
 
         .as-img {
@@ -350,35 +349,35 @@ const Services = () => {
 
         .as-card-badge {
           position: absolute;
-          top: 12px;
-          left: 12px;
+          top: 10px;
+          left: 10px;
           z-index: 3;
           background: rgba(255, 255, 255, 0.95);
           color: #000000;
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 700;
-          padding: 6px 14px;
+          padding: 4px 10px;
           border-radius: var(--radius-full, 100px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
 
         .as-content {
-          padding: 0 4px 12px 4px;
+          padding: 0 2px 8px 2px;
         }
 
         .as-title {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           font-weight: 700;
           color: var(--text-primary, #000000);
-          margin: 0 0 8px 0;
-          letter-spacing: -0.4px;
+          margin: 0 0 6px 0;
+          letter-spacing: -0.3px;
         }
 
         .as-desc {
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           color: var(--text-muted, #666666);
-          line-height: 1.5;
-          margin: 0 0 16px 0;
+          line-height: 1.4;
+          margin: 0 0 12px 0;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
@@ -389,11 +388,11 @@ const Services = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 0;
+          padding: 8px 0;
           border-top: 1px solid var(--border-light, #f0f0f0);
           border-bottom: 1px solid var(--border-light, #f0f0f0);
-          margin-bottom: 14px;
-          font-size: 0.78rem;
+          margin-bottom: 10px;
+          font-size: 0.72rem;
           color: var(--text-primary, #000000);
           font-weight: 600;
         }
@@ -401,39 +400,39 @@ const Services = () => {
         .as-metric-item {
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: 4px;
         }
 
         .as-divider {
           width: 1px;
-          height: 14px;
+          height: 12px;
           background: var(--border-light, #e0e0e0);
         }
 
         .as-tags-row {
           display: flex;
-          gap: 6px;
-          margin-bottom: 16px;
+          gap: 5px;
+          margin-bottom: 12px;
           flex-wrap: wrap;
         }
 
         .as-pill {
           background: rgba(0, 0, 0, 0.04);
           color: var(--text-primary, #000000);
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 600;
-          padding: 4px 10px;
+          padding: 3px 8px;
           border-radius: 100px;
         }
 
         .as-btn-action {
           width: 100%;
-          height: 44px;
+          height: 38px;
           background: var(--text-primary, #000000);
           color: #ffffff;
           border: none;
           border-radius: var(--radius-full, 100px);
-          font-size: 0.88rem;
+          font-size: 0.82rem;
           font-weight: 700;
           cursor: pointer;
           text-decoration: none;
@@ -452,96 +451,78 @@ const Services = () => {
         .services-footer-cta {
           display: flex;
           justify-content: center;
-          margin-top: 50px;
+          margin-top: 40px;
         }
 
         .show-all-btn {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 16px 36px;
+          padding: 14px 32px;
           background: var(--text-primary, #000000);
           color: #ffffff;
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 700;
           border-radius: var(--radius-full, 100px);
           text-decoration: none;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
           transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .show-all-btn:hover {
           background: #222222;
-          transform: translateY(-3px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
         }
 
         /* MOBILE RESPONSIVE TUNING */
         @media (max-width: 768px) {
           .home-services-section {
-            padding: 50px 0;
+            padding: 40px 0;
           }
 
           .services-intro {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
           }
 
           .services-intro h2 {
             font-size: 1.8rem;
           }
 
-          .marquee-wrapper::before,
-          .marquee-wrapper::after {
-            width: 8%;
-          }
-
           .as-card {
-            width: 270px;
-            padding: 12px;
-            border-radius: 18px;
+            width: 230px;
+            padding: 10px;
+            border-radius: 16px;
           }
 
           .as-img-wrapper {
-            height: 130px;
-            margin-bottom: 12px;
-          }
-
-          .as-card-badge {
-            font-size: 0.65rem;
-            padding: 4px 8px;
-            top: 8px;
-            left: 8px;
-          }
-
-          .as-title {
-            font-size: 1rem;
-            margin-bottom: 4px;
-          }
-
-          .as-desc {
-            font-size: 0.78rem;
-            margin-bottom: 12px;
-          }
-
-          .as-metrics-row {
-            padding: 8px 0;
-            font-size: 0.68rem;
+            height: 110px;
             margin-bottom: 10px;
           }
 
-          .as-pill {
-            font-size: 0.68rem;
-            padding: 3px 8px;
+          .as-title {
+            font-size: 0.95rem;
+          }
+
+          .as-desc {
+            font-size: 0.72rem;
+            margin-bottom: 8px;
+          }
+
+          .as-metrics-row {
+            padding: 6px 0;
+            font-size: 0.65rem;
+            margin-bottom: 8px;
           }
 
           .as-btn-action {
-            height: 38px;
-            font-size: 0.78rem;
+            height: 34px;
+            font-size: 0.75rem;
           }
 
           .show-all-btn {
-            padding: 14px 28px;
-            font-size: 0.9rem;
+            padding: 12px 24px;
+            font-size: 0.85rem;
           }
         }
       `}</style>
@@ -549,8 +530,8 @@ const Services = () => {
       <section className="home-services-section">
         {/* Intro Header */}
         <div className="services-intro">
-          <span className="cc-service-tag">EXPERT CAPABILITIES</span>
-          <h2>What We Do Best</h2>
+          <span className="cc-service-tag">WHAT WE OFFER</span>
+          <h2>TOP SERVICES</h2>
           <p className="services-subhead">
             Tailored digital solutions built with cutting-edge engineering and modern design.
           </p>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 // --- PURE SVG ICONS FOR TECH METRICS & HOVER OVERLAYS ---
 const TechOverlayIcon = () => (
@@ -37,7 +38,7 @@ const SearchIcon = () => (
 // 21 SERVICES WITH CATEGORY TAGGING
 const SERVICES_DATA = [
   {
-    id: 1,
+    id: "web-development",
     title: "Web Development",
     category: "Development",
     badge: "★ High Demand",
@@ -50,7 +51,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 2,
+    id: "app-development",
     title: "App Development",
     category: "Development",
     badge: "⚡ Featured",
@@ -63,7 +64,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 3,
+    id: "wordpress-architecture",
     title: "WordPress Architecture",
     category: "Development",
     badge: "✦ Rapid Launch",
@@ -76,7 +77,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 4,
+    id: "management-systems",
     title: "Management Systems",
     category: "Software",
     badge: "★ Scalable",
@@ -89,7 +90,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 5,
+    id: "crm-development",
     title: "CRM Development",
     category: "Software",
     badge: "⚡ Automation",
@@ -102,7 +103,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 6,
+    id: "erp-systems",
     title: "ERP Systems",
     category: "Software",
     badge: "✦ Heavy Duty",
@@ -115,7 +116,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 7,
+    id: "pos-systems",
     title: "POS Systems",
     category: "Software",
     badge: "★ Retail",
@@ -128,7 +129,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 8,
+    id: "custom-software",
     title: "Custom Software",
     category: "Software",
     badge: "⚡ Tailored",
@@ -141,7 +142,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 9,
+    id: "business-applications",
     title: "Business Applications",
     category: "Software",
     badge: "✦ Workflow",
@@ -154,7 +155,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 10,
+    id: "saas-application",
     title: "SaaS Application",
     category: "Development",
     badge: "★ Cloud First",
@@ -167,7 +168,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 11,
+    id: "portfolio-websites",
     title: "Portfolio Websites",
     category: "Design",
     badge: "⚡ Showcase",
@@ -180,7 +181,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 12,
+    id: "ui-ux-design",
     title: "UI / UX Design",
     category: "Design",
     badge: "✦ Pixel Perfect",
@@ -193,7 +194,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 13,
+    id: "devops-engineering",
     title: "DevOps Engineering",
     category: "Software",
     badge: "★ CI/CD",
@@ -206,7 +207,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 14,
+    id: "data-analytics",
     title: "Data Analytics & Insights",
     category: "Software",
     badge: "⚡ BI Dashboards",
@@ -219,7 +220,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 15,
+    id: "meta-ads",
     title: "Meta Ads & Paid Ads",
     category: "Marketing",
     badge: "✦ High ROI",
@@ -232,7 +233,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 16,
+    id: "ecommerce-stores",
     title: "E-Commerce Stores",
     category: "Development",
     badge: "★ Conversion",
@@ -245,7 +246,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 17,
+    id: "ppt-pitch-decks",
     title: "PPT Deck & Pitch Slides",
     category: "Design",
     badge: "⚡ Investor Ready",
@@ -258,7 +259,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 18,
+    id: "social-media-marketing",
     title: "Social Media Marketing",
     category: "Marketing",
     badge: "✦ Engagement",
@@ -271,7 +272,7 @@ const SERVICES_DATA = [
     orderClass: "anim-right"
   },
   {
-    id: 19,
+    id: "ai-automation",
     title: "AI Automation & Bots",
     category: "Software",
     badge: "★ Next-Gen",
@@ -284,7 +285,7 @@ const SERVICES_DATA = [
     orderClass: "anim-left"
   },
   {
-    id: 20,
+    id: "video-editing",
     title: "Video Editing & VFX",
     category: "Design",
     badge: "⚡ High Quality",
@@ -297,7 +298,7 @@ const SERVICES_DATA = [
     orderClass: "anim-center"
   },
   {
-    id: 21,
+    id: "graphic-design",
     title: "Graphic Design",
     category: "Design",
     badge: "✦ Brand Identity",
@@ -314,6 +315,7 @@ const SERVICES_DATA = [
 const CATEGORIES = ["All", "Development", "Software", "Design", "Marketing"];
 
 const AllServices = () => {
+  const navigate = useNavigate();
   const cardsRef = useRef([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -357,16 +359,24 @@ const AllServices = () => {
 
   return (
     <>
-      <style>{`
-        .as-wrapper {
-          width: 100%;
-          padding: 80px 6%;
-          background: var(--bg-main, #fcfcfd);
-          font-family: var(--font-family, sans-serif);
+
+     <style>{`
+        /* GLOBAL RESET & BOX SIZING FOR OVERFLOW PREVENTION */
+        .as-wrapper, .as-wrapper * {
           box-sizing: border-box;
         }
 
+        .as-wrapper {
+          width: 100%;
+          max-width: 100vw;
+          padding: 80px 6%;
+          background: var(--bg-main, #fcfcfd);
+          font-family: var(--font-family, sans-serif);
+          overflow-x: hidden;
+        }
+
         .as-container {
+          width: 100%;
           max-width: 1300px;
           margin: 0 auto;
         }
@@ -379,6 +389,7 @@ const AllServices = () => {
           gap: 16px;
           margin-bottom: 40px;
           flex-wrap: wrap;
+          width: 100%;
         }
 
         /* LIVE SEARCH BAR */
@@ -393,6 +404,7 @@ const AllServices = () => {
           box-shadow: 0 4px 15px rgba(0,0,0,0.02);
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
           width: 260px;
+          max-width: 100%;
         }
 
         .as-search-box:focus-within {
@@ -405,6 +417,7 @@ const AllServices = () => {
           margin-right: 10px;
           display: flex;
           align-items: center;
+          flex-shrink: 0;
         }
 
         .as-search-input {
@@ -414,6 +427,7 @@ const AllServices = () => {
           font-size: 0.88rem;
           color: #000000;
           width: 100%;
+          min-width: 0;
         }
 
         /* CATEGORY PILLS */
@@ -423,6 +437,8 @@ const AllServices = () => {
           gap: 8px;
           overflow-x: auto;
           scrollbar-width: none;
+          max-width: 100%;
+          padding-bottom: 4px;
         }
 
         .as-category-bar::-webkit-scrollbar {
@@ -440,6 +456,7 @@ const AllServices = () => {
           cursor: pointer;
           white-space: nowrap;
           transition: all 0.3s ease;
+          flex-shrink: 0;
         }
 
         .as-cat-btn:hover {
@@ -454,14 +471,15 @@ const AllServices = () => {
           box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
-        /* 3/3 LAPTOP GRID, 2/2 MOBILE GRID */
+        /* GRID STRUCTURE */
         .as-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 32px;
+          width: 100%;
         }
 
-        /* CARD MAIN STRUCTURE WITH SMOOTH FADE TRANSITIONS */
+        /* CARD STRUCTURE */
         .as-card {
           background: var(--bg-surface, #ffffff);
           border: 1px solid var(--border-light, #eaeaea);
@@ -471,22 +489,18 @@ const AllServices = () => {
           flex-direction: column;
           justify-content: space-between;
           box-shadow: var(--shadow-subtle, 0 8px 30px rgba(0,0,0,0.03));
-          opacity: 0;
-          transform: translateY(30px);
+          opacity: 1;
+          transform: translateY(0);
           transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
                       transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                       border-color 0.3s ease;
+          width: 100%;
+          min-width: 0; /* Prevents flex/grid overflow */
         }
 
         .as-card:hover {
           border-color: var(--text-primary, #000000);
-          transform: translateY(-6px) !important;
-        }
-
-        /* STAGGERED ANIMATION VISIBILITY */
-        .as-card.as-visible {
-          opacity: 1;
-          transform: translateY(0);
+          transform: translateY(-6px);
         }
 
         /* TOP BANNER IMAGE CONTAINER */
@@ -539,11 +553,16 @@ const AllServices = () => {
           padding: 6px 14px;
           border-radius: var(--radius-full, 100px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          white-space: nowrap;
+          max-width: 90%;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         /* CARD TEXT CONTENT */
         .as-content {
           padding: 0 8px 12px 8px;
+          min-width: 0;
         }
 
         .as-title {
@@ -552,6 +571,7 @@ const AllServices = () => {
           color: var(--text-primary, #000000);
           margin: 0 0 10px 0;
           letter-spacing: -0.4px;
+          word-break: break-word;
         }
 
         .as-desc {
@@ -559,6 +579,7 @@ const AllServices = () => {
           color: var(--text-muted, #666666);
           line-height: 1.5;
           margin: 0 0 20px 0;
+          word-break: break-word;
         }
 
         /* METRICS ROW */
@@ -573,23 +594,27 @@ const AllServices = () => {
           font-size: 0.8rem;
           color: var(--text-primary, #000000);
           font-weight: 600;
+          gap: 4px;
         }
 
         .as-metric-item {
           display: flex;
           align-items: center;
           gap: 6px;
+          white-space: nowrap;
         }
 
         .as-divider {
           width: 1px;
           height: 16px;
           background: var(--border-light, #e0e0e0);
+          flex-shrink: 0;
         }
 
         /* TAG PILLS ROW */
         .as-tags-row {
           display: flex;
+          flex-wrap: wrap;
           gap: 8px;
           margin-bottom: 22px;
         }
@@ -601,6 +626,7 @@ const AllServices = () => {
           font-weight: 600;
           padding: 5px 12px;
           border-radius: 100px;
+          white-space: nowrap;
         }
 
         /* BOTTOM CTA BUTTON */
@@ -619,6 +645,7 @@ const AllServices = () => {
           align-items: center;
           justify-content: center;
           text-decoration: none;
+          white-space: nowrap;
         }
 
         .as-btn-action:hover {
@@ -626,109 +653,69 @@ const AllServices = () => {
           transform: scale(1.01);
         }
 
-        /* NO RESULT CUSTOM CARD */
-        .as-custom-fallback {
-          grid-column: 1 / -1;
-          background: #ffffff;
-          border: 2px dashed #e0e0e0;
-          border-radius: 24px;
-          padding: 50px 30px;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          animation: fadeIn 0.4s ease-in-out;
+        /* TABLET & SMALL LAPTOPS (Max 1024px) */
+        @media (max-width: 1024px) {
+          .as-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+          }
         }
 
-        .as-custom-title {
-          font-size: 1.6rem;
-          font-weight: 800;
-          color: #000000;
-          margin: 0 0 10px 0;
-        }
-
-        .as-custom-desc {
-          font-size: 0.95rem;
-          color: #666666;
-          max-width: 500px;
-          margin: 0 0 24px 0;
-          line-height: 1.5;
-        }
-
-        .as-custom-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: #000000;
-          color: #ffffff;
-          padding: 14px 32px;
-          border-radius: 100px;
-          font-weight: 700;
-          font-size: 0.95rem;
-          text-decoration: none;
-          transition: transform 0.2s ease, background 0.3s ease;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .as-custom-btn:hover {
-          background: #222222;
-          transform: translateY(-2px);
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* MOBILE RESPONSIVE (STRICTLY 2/2 GRID) */
+        /* MOBILE RESPONSIVE (Max 768px) */
         @media (max-width: 768px) {
           .as-wrapper {
-            padding: 40px 3%;
+            padding: 24px 12px;
           }
 
           .as-toolbar-row {
             justify-content: flex-start;
             flex-direction: column-reverse;
             align-items: stretch;
+            gap: 12px;
+            margin-bottom: 24px;
           }
 
           .as-search-box {
             width: 100%;
-            box-sizing: border-box;
           }
 
           .as-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
           }
 
           .as-card {
-            padding: 10px;
+            padding: 8px;
             border-radius: 16px;
           }
 
           .as-img-wrapper {
-            height: 130px;
-            margin-bottom: 12px;
+            height: 110px;
+            margin-bottom: 10px;
+            border-radius: 12px;
           }
 
           .as-card-badge {
-            font-size: 0.65rem;
-            padding: 4px 8px;
-            top: 8px;
-            left: 8px;
+            font-size: 0.6rem;
+            padding: 3px 6px;
+            top: 6px;
+            left: 6px;
+          }
+
+          .as-content {
+            padding: 0 4px 6px 4px;
           }
 
           .as-title {
-            font-size: 0.98rem;
-            margin-bottom: 6px;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+            line-height: 1.2;
           }
 
           .as-desc {
-            font-size: 0.78rem;
-            line-height: 1.3;
-            margin-bottom: 12px;
+            font-size: 0.72rem;
+            line-height: 1.25;
+            margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -736,19 +723,37 @@ const AllServices = () => {
           }
 
           .as-metrics-row {
-            padding: 8px 0;
-            font-size: 0.68rem;
-            margin-bottom: 12px;
+            padding: 6px 0;
+            font-size: 0.62rem;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2px;
+          }
+
+          .as-tags-row {
+            gap: 4px;
+            margin-bottom: 10px;
           }
 
           .as-pill {
-            font-size: 0.68rem;
-            padding: 3px 8px;
+            font-size: 0.62rem;
+            padding: 2px 6px;
           }
 
           .as-btn-action {
-            height: 38px;
-            font-size: 0.78rem;
+            height: 34px;
+            font-size: 0.72rem;
+          }
+        }
+
+        /* VERY SMALL MOBILE SCREENS (Max 400px) */
+        @media (max-width: 400px) {
+          .as-grid {
+            grid-template-columns: minmax(0, 1fr); /* Auto switch to 1 col if device is extremely narrow */
+          }
+          .as-img-wrapper {
+            height: 160px;
           }
         }
       `}</style>
@@ -795,6 +800,8 @@ const AllServices = () => {
                   key={service.id}
                   ref={(el) => (cardsRef.current[index] = el)}
                   className="as-card"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate(`/services/${service.id}`)}
                 >
                   <div>
                     {/* TOP IMAGE WITH HOVER OVERLAY & ICON */}
@@ -845,7 +852,15 @@ const AllServices = () => {
                   </div>
 
                   {/* BOTTOM BUTTON */}
-                  <button className="as-btn-action">Start Project</button>
+                  <button 
+                    className="as-btn-action"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/services/${service.id}`);
+                    }}
+                  >
+                    Start Project
+                  </button>
                 </div>
               ))
             ) : (
@@ -857,9 +872,12 @@ const AllServices = () => {
                 <p className="as-custom-desc">
                   We didn't find exact matches for "<strong>{searchTerm}</strong>". However, we engineer custom software & bespoke digital services tailored to your exact requirements.
                 </p>
-                <a href="#contact" className="as-custom-btn">
+                <button 
+                  className="as-custom-btn"
+                  onClick={() => navigate("/contact")}
+                >
                   Request Custom Service →
-                </a>
+                </button>
               </div>
             )}
           </div>

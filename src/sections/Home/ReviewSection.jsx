@@ -33,7 +33,7 @@ const REVIEWS = [
     id: 4,
     name: "Hassan Mehmood",
     role: "Founder, HM Aesthetics",
-    comment: "Exceptional UI/UX intuition Every component integrated flawlessly with our existing master style variables a true partner in design.",
+    comment: "Working with this company has been a game-changer for us. Their innovative solutions and dedicated support have significantly boosted our productivity and efficiency. We couldn't be happier with the results",
     rating: 5,
     initials: "AM",
     bgAccent: "#8b5cf6"

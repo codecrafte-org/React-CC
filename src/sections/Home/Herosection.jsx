@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import '../../styles/root.css';
 import Img from '../../assets/hero.png';
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    // Reload par scroll glitch (top fade ke scroll force) ko rokne ke liye
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
@@ -30,12 +31,12 @@ const HeroSection = () => {
           width: 100%;
           min-height: 140vh;
           background-color: var(--bg-main);
-          padding-top: var(--hero-top-spacing, 100px);
+          padding-top: 130px;
           overflow: hidden;
           box-sizing: border-box;
         }
 
-        /* REAL FRAMER-STYLE CONTINUOUS LIQUID WAVE (SVG ANIMATED) */
+        /* FRAMER-STYLE LIQUID WAVE SVG */
         .framer-wave-canvas {
           position: absolute;
           top: -5%;
@@ -45,6 +46,7 @@ const HeroSection = () => {
           pointer-events: none;
           z-index: 1;
           overflow: hidden;
+          animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .fluid-wave-svg {
@@ -83,7 +85,7 @@ const HeroSection = () => {
         /* STICKY CONTAINER */
         .hero-sticky-container {
           position: sticky;
-          top: 70px;
+          top: 0px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -96,7 +98,7 @@ const HeroSection = () => {
           z-index: 2;
         }
 
-        /* TEXT WRAPPER */
+        /* TEXT WRAPPER WITH ENTRANCE FADE */
         .hero-text-wrapper {
           display: flex;
           flex-direction: column;
@@ -110,75 +112,87 @@ const HeroSection = () => {
           transition: opacity 0.12s linear, transform 0.12s linear;
         }
 
-        /* AGENCY BADGE */
         .agency-badge {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          background: var(--glass-bg);
+          gap: 8px;
+          background: var(--glass-bg, rgba(255, 255, 255, 0.7));
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border: 1px solid var(--border-color);
-          padding: 6px 16px;
+          border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+          padding: 6px 14px;
           border-radius: 100px;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 600;
-          color: var(--text-dark);
-          box-shadow: var(--glass-shadow);
-          margin-bottom: 18px;
+          color: var(--text-dark, #0f172a);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+          margin-bottom: 20px;
+          
+          /* Entrance Animation */
+          opacity: 0;
+          animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
         }
 
         .badge-dot {
-          width: 8px;
-          height: 8px;
-          background-color: var(--accent-green);
+          width: 7px;
+          height: 7px;
+          background-color: #10b981;
           border-radius: 50%;
           display: inline-block;
-          box-shadow: 0 0 10px var(--accent-green);
+          box-shadow: 0 0 8px #10b981;
         }
 
-        /* HEADLINE */
         .hero-headline {
           font-family: var(--font-main);
           font-size: clamp(2.6rem, 5.8vw, 4.8rem);
           font-weight: 800;
-          color: var(--text-dark);
+          color: var(--text-dark, #0f172a);
           letter-spacing: -0.03em;
           line-height: 1.1;
           margin-bottom: 16px;
+
+          /* Entrance Animation */
+          opacity: 0;
+          animation: heroFadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
         }
 
         .hero-headline-accent {
           font-family: var(--font-serif);
           font-style: italic;
           font-weight: 400;
-          color: var(--primary-color);
+          color: var(--primary-color, #0066ff);
         }
 
         .hero-subtext {
           font-size: clamp(1rem, 1.8vw, 1.25rem);
-          color: var(--text-muted);
+          color: var(--text-muted, #64748b);
           line-height: 1.6;
           max-width: 640px;
-          margin: 0 auto 24px auto;
+          margin: 0 auto 32px auto;
           font-weight: 500;
+
+          /* Entrance Animation */
+          opacity: 0;
+          animation: heroFadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
         }
 
-        /* MODERN HIGH-END AGENCY BUTTONS */
         .hero-cta-group {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 14px;
-          margin-bottom: 12px;
+          gap: 16px;
           width: 100%;
+
+          /* Entrance Animation */
+          opacity: 0;
+          animation: heroFadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
         }
 
         .btn-agency-primary {
           position: relative;
-          background: linear-gradient(135deg, var(--text-dark) 0%, #1e293b 100%);
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
           color: #ffffff;
-          padding: 14px 28px;
+          padding: 14px 30px;
           border-radius: 100px;
           font-weight: 700;
           font-size: 0.95rem;
@@ -191,15 +205,15 @@ const HeroSection = () => {
 
         .btn-agency-primary:hover {
           transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 15px 35px -5px var(--primary-color);
-          background: var(--primary-color);
+          box-shadow: 0 15px 35px -5px var(--primary-color, #0066ff);
+          background: var(--primary-color, #0066ff);
         }
 
         .btn-agency-secondary {
-          background: rgba(255, 255, 255, 0.6);
-          color: var(--text-dark);
-          border: 1px solid var(--border-color);
-          padding: 14px 28px;
+          background: rgba(255, 255, 255, 0.7);
+          color: var(--text-dark, #0f172a);
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          padding: 14px 30px;
           border-radius: 100px;
           font-weight: 700;
           font-size: 0.95rem;
@@ -212,85 +226,132 @@ const HeroSection = () => {
         .btn-agency-secondary:hover {
           background: #ffffff;
           transform: translateY(-3px) scale(1.02);
-          border-color: var(--text-dark);
+          border-color: #0f172a;
         }
 
-        /* SHOWCASE SECTION WITH BOTTOM GRADIENT BLUR FADE */
+        /* SHOWCASE SECTION WITH ADVANCED IMAGE OVERLAY & FADE */
         .showcase-wrapper {
           width: 100%;
           max-width: 1120px;
-          margin-top: -1px;
+          margin-top: 10px;
           will-change: transform, opacity;
-          transition: opacity 0.12s linear, transform 0.12s linear;
         }
 
         .showcase-card {
           position: relative;
           width: 100%;
           overflow: hidden;
-          border-radius: 20px 20px 0 0;
+          border-radius: 24px 24px 0 0;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        /* BOTTOM FADE GRADIENT OVERLAY FOR CLEAN BLENDING */
+        .showcase-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 35%;
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-main, #ffffff) 100%);
+          pointer-events: none;
+          z-index: 2;
         }
 
         .showcase-card img {
           width: 100%;
           height: auto;
           display: block;
-          border-radius: 14px 14px 0 0;
+          border-radius: 20px 20px 0 0;
+          object-fit: cover;
           image-rendering: -webkit-optimize-contrast;
         }
 
-        /* BOTTOM SMOOTH BLUR-FADE OVERLAY */
-        .showcase-bottom-fade {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 140px;
-          background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-main) 90%);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          pointer-events: none;
+        /* ENTRANCE KEYFRAMES */
+        @keyframes heroFadeSlideUp {
+          0% {
+            opacity: 0;
+            transform: translateY(24px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
-        /* MOBILE RESPONSIVE (2 BUTTONS IN 1 LINE FIXED) */
+        @keyframes heroFadeIn {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+
+        /* MOBILE FIXES: IMAGE JUGAR & ZERO GAP FIX */
         @media (max-width: 768px) {
           .hero-section {
-            padding-top: 40px;
-            min-height: 120vh;
+            padding-top: 95px;
+            min-height: 110vh;
           }
+
+          .hero-sticky-container {
+            padding: 0 12px;
+          }
+
+          .hero-subtext {
+            margin-bottom: 20px;
+          }
+
           .hero-cta-group {
-            flex-direction: row; /* Mobile par bhi 1 line me rakha hai */
+            flex-direction: row;
             gap: 10px;
           }
+
           .btn-agency-primary, .btn-agency-secondary {
             flex: 1;
-            padding: 12px 16px;
+            padding: 12px 14px;
             font-size: 0.85rem;
             text-align: center;
             white-space: nowrap;
           }
-          .framer-wave-canvas {
-            height: 380px;
+
+          /* MOBILE IMAGE JUGAR: Badi kardi, Side se Bleed ho kar Clean Dikhegi */
+          .showcase-wrapper {
+            width: 118%;
+            max-width: none;
+            margin-left: -9%;
+            margin-right: -9%;
+            margin-top: 5px;
           }
-          .showcase-bottom-fade {
-            height: 90px;
+
+          .showcase-card {
+            border-radius: 16px 16px 0 0;
+          }
+
+          .showcase-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 16px 16px 0 0;
+          }
+
+          .showcase-card::after {
+            height: 45%;
           }
         }
       `}</style>
 
       <section className="hero-section">
-        {/* FRAMER-GRADE ANIMATED WAVY GRADIENT CANVAS */}
+        {/* ANIMATED WAVY GRADIENT CANVAS */}
         <div className="framer-wave-canvas">
           <svg className="fluid-wave-svg" viewBox="0 0 2160 400" preserveAspectRatio="none">
             <defs>
               <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="var(--primary-color)" stopOpacity="0.35" />
-                <stop offset="50%" stopColor="var(--secondary-color)" stopOpacity="0.2" />
+                <stop offset="0%" stopColor="var(--primary-color, #0066ff)" stopOpacity="0.35" />
+                <stop offset="50%" stopColor="var(--secondary-color, #a855f7)" stopOpacity="0.2" />
                 <stop offset="100%" stopColor="transparent" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="wave-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="var(--accent-green)" stopOpacity="0.3" />
-                <stop offset="70%" stopColor="var(--primary-color)" stopOpacity="0.15" />
+                <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
+                <stop offset="70%" stopColor="var(--primary-color, #0066ff)" stopOpacity="0.15" />
                 <stop offset="100%" stopColor="transparent" stopOpacity="0" />
               </linearGradient>
             </defs>
@@ -312,7 +373,7 @@ const HeroSection = () => {
           >
             <div className="agency-badge">
               <span className="badge-dot"></span>
-              <span>Accepting New Projects for 2026</span>
+              <span>Available</span>
             </div>
 
             <h1 className="hero-headline">
@@ -324,17 +385,19 @@ const HeroSection = () => {
             </p>
 
             <div className="hero-cta-group">
-              <button className="btn-agency-primary">Start a Project</button>
-              <button className="btn-agency-secondary">Book a Call</button>
+              <Link to='/contact'><button className="btn-agency-primary">Start a Project</button></Link>
+              <a href="tel:03059462051"><button className="btn-agency-secondary">Book a Call</button></a>
             </div>
           </div>
 
-          {/* PORTFOLIO SHOWCASE WITH BLUR BOTTOM ENDING */}
+          {/* PORTFOLIO SHOWCASE */}
           <div
             className="showcase-wrapper"
             style={{
-              opacity: Math.min(scrollProgress * 2.2, 1),
-              transform: `translateY(${Math.max(60 - scrollProgress * 100, 0)}px) scale(${0.97 + scrollProgress * 0.03})`,
+              opacity: scrollProgress > 0.05 ? Math.min(scrollProgress * 2.5, 1) : 0,
+              transform: `translateY(${Math.max(80 - scrollProgress * 120, 0)}px) scale(${0.96 + scrollProgress * 0.04})`,
+              transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
+              pointerEvents: scrollProgress > 0.1 ? 'auto' : 'none',
             }}
           >
             <div className="showcase-card">
@@ -342,7 +405,7 @@ const HeroSection = () => {
                 src={Img}
                 alt="Agency Portfolio Showcase"
               />
-             </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,0 +1,386 @@
+@import './root.css'; /* Importing your exact root.css without changes */
+
+/* Main Wrapper with extra top spacing */
+.sd-wrapper {
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  padding: 110px 24px 120px 24px; /* Top margin/padding increased */
+}
+
+.sd-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 1. Hero Section */
+.sd-hero {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 72px auto;
+}
+
+.sd-tagline {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-green);
+  background-color: var(--accent-green-bg);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  margin-bottom: 24px;
+}
+
+.sd-hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 10px 0;
+  text-transform: uppercase;
+  color: var(--text-dark, #000000);
+}
+
+.sd-hero-desc {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 2. Pricing Section */
+.sd-pricing-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.sd-pricing-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+}
+
+.sd-pricing-sub {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.sd-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.sd-plan-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sd-plan-card.popular {
+  border: 2px solid var(--primary-color);
+  background: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 102, 255, 0.18);
+}
+
+.sd-popular-badge {
+  position: absolute;
+  top: -14px;
+  right: 32px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-light);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.sd-plan-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.sd-price-box {
+  margin: 20px 0 28px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sd-plan-price {
+  font-size: 46px;
+  font-weight: 900;
+  color: var(--text-dark);
+}
+
+.sd-plan-currency {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.sd-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sd-feature-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.sd-feature-item.included {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.sd-feature-item.excluded {
+  color: var(--text-muted);
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.sd-feature-tag {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.sd-feature-tag.free {
+  background-color: var(--accent-green-bg);
+  color: var(--accent-green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.sd-feature-tag.standard {
+  background-color: #f1f5f9;
+  color: var(--text-muted);
+}
+
+.sd-buy-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px 0;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.sd-buy-btn.primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.sd-buy-btn.secondary {
+  background-color: #ffffff;
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+}
+
+/* ==========================================
+   3. EXACT SCREENSHOT CARD STYLE
+   ========================================== */
+.sd-complementary-section {
+  margin-top: 100px;
+  padding-top: 64px;
+  border-top: 1px solid var(--border-color);
+}
+
+.sd-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.sd-exact-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.sd-exact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+.sd-card-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.sd-card-desc {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Middle info bar */
+.sd-card-info-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sd-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sd-info-divider {
+  color: #cbd5e1;
+  font-weight: 300;
+}
+
+/* Pill Tags */
+.sd-card-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.sd-card-pill {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 9999px;
+}
+
+/* Black Pill Button */
+.sd-black-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 0;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sd-black-btn:hover {
+  background-color: #1e293b;
+}
+
+/* Fallback */
+.sd-not-found {
+  text-align: center;
+  padding: 140px 20px;
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+/* ==========================================
+   FADE ANIMATIONS
+   ========================================== */
+
+/* Fade Down */
+.fade-down {
+  animation: fadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Up */
+.fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Right */
+.fade-right {
+  animation: fadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade Left */
+.fade-left {
+  animation: fadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
