@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import DP from "../../assets/DP.jpeg";
+import "../../styles/root.css";
 
 const Form = () => {
-  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
   const formRef = useRef(null);
+  
   const [selectedService, setSelectedService] = useState("UI/UX Design");
   const [btnText, setBtnText] = useState("Submit");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,36 +21,46 @@ const Form = () => {
     "Other / Customizable"
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in-active");
-        }
-      },
-      { threshold: 0.15 }
-    );
+  // 3D SCROLL PERSPECTIVE TILT ANIMATION
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"]
+  });
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  // Flat & Elevate Transformations
+  const rawRotateX = useTransform(scrollYProgress, [0, 1], [35, 0]);
+  const rawY = useTransform(scrollYProgress, [0, 1], [120, 0]);
+  const rawScale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
+  const rawOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.6, 1]);
 
+  // Physics Spring Smoothing (Prevents Lag on Mobile)
+  const rotateX = useSpring(rawRotateX, { stiffness: 100, damping: 20 });
+  const y = useSpring(rawY, { stiffness: 100, damping: 20 });
+  const scale = useSpring(rawScale, { stiffness: 100, damping: 20 });
+  const opacity = useSpring(rawOpacity, { stiffness: 100, damping: 20 });
+
+  // EMAILJS SUBMIT HANDLER (ROBUST RE-WRITTEN)
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setBtnText("Sending...");
 
+    // Sending via emailjs.sendForm using explicit e.target ref
     emailjs
       .sendForm(
         "service_ete2uen",
         "template_t4n5g19",
-        formRef.current,
+        e.target,
         "xzBpQi5U68rp562Lu"
+        
       )
       .then(
-        () => {
+        (result) => {
+          console.log("Email Successfully Sent:", result.text);
           setBtnText("Submitted ✓");
           if (formRef.current) formRef.current.reset();
+          setSelectedService("UI/UX Design");
+          
           setTimeout(() => {
             setBtnText("Submit");
             setIsSubmitting(false);
@@ -55,7 +68,7 @@ const Form = () => {
         },
         (error) => {
           console.error("EmailJS Error:", error);
-          alert("Failed to send message. Please try again.");
+          alert(`Failed to send message: ${error.text || "Check EmailJS setup"}`);
           setBtnText("Submit");
           setIsSubmitting(false);
         }
@@ -65,23 +78,16 @@ const Form = () => {
   return (
     <>
       <style>{`
-        /* EXACT UI MATCH WITH YOUR ROOT VARS */
         .exact-form-section {
           width: 100%;
-          padding: 60px 20px;
+          padding: 80px 20px;
           display: flex;
           justify-content: center;
           align-items: center;
-          background: var(--bg-body, #ffffff);
+          background: var(--bg-main, #ffffff);
           box-sizing: border-box;
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .exact-form-section.fade-in-active {
-          opacity: 1;
-          transform: translateY(0);
+          perspective: 1200px; /* Essential for 3D Scroll Rotation */
+          overflow: hidden;
         }
 
         .exact-card-container {
@@ -91,20 +97,21 @@ const Form = () => {
           overflow: hidden;
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
-          border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
-          box-shadow: var(--shadow-hover, 0 30px 60px rgba(0,0,0,0.5));
+          border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+          box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
           background: var(--bg-surface, #111115);
+          transform-style: preserve-3d;
+          font-family: var(--font-main, sans-serif);
         }
 
-        /* LEFT PANEL (LIGHT GRADIENT & CONTENT) */
+        /* LEFT PANEL */
         .exact-left-panel {
-          background: linear-gradient(180deg, var(--color-primary, #0066ff) 0%, var(--bg-surface, #ffffff) 65%);
-          padding: 40px;
+          background: linear-gradient(180deg, var(--primary-color, #0066ff) 0%, #ffffff 75%);
+          padding: 44px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           color: #000000;
-          position: relative;
         }
 
         .exact-profile-header {
@@ -125,8 +132,8 @@ const Form = () => {
           height: 64px;
           border-radius: 50%;
           object-fit: cover;
-          border: 2px solid var(--bg-surface, #ffffff);
-          box-shadow: var(--shadow-subtle, 0 4px 10px rgba(0,0,0,0.1));
+          border: 2px solid #ffffff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .exact-user-desc {
@@ -144,10 +151,10 @@ const Form = () => {
         }
 
         .exact-pill {
-          background: rgba(0, 0, 0, 0.9);
+          background: #000000;
           color: #ffffff;
           padding: 8px 16px;
-          border-radius: var(--radius-full, 100px);
+          border-radius: 100px;
           font-size: 0.8rem;
           font-weight: 600;
           text-decoration: none;
@@ -164,28 +171,30 @@ const Form = () => {
         }
 
         .exact-hero-title {
-          font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 10px 0;
-  text-transform: uppercase;
-  color: var(--text-dark, #000000);
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          margin: 10px 0;
+          font-weight: 800;
+          text-transform: uppercase;
+          line-height: 1.1;
+          color: #000000;
         }
 
-        /* RIGHT PANEL (DARK FORM) */
+        /* RIGHT PANEL */
         .exact-right-panel {
-          background: var(--color-secondary, #111115);
+          background: var(--text-dark, #111115);
           padding: 44px;
-          color: var(--text-white, #ffffff);
+          color: #ffffff;
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
 
         .exact-form-title {
-          font-size: clamp(1.8rem, 3vw, 2.4rem);
+          font-size: clamp(1.6rem, 2.5vw, 2.2rem);
           font-weight: 500;
-          color: var(--text-white, #ffffff);
+          color: #ffffff;
           margin: 0 0 24px 0;
-          line-height: 1.2;
+          line-height: 1.25;
         }
 
         .exact-form-title span {
@@ -195,7 +204,7 @@ const Form = () => {
 
         .exact-section-label {
           font-size: 0.8rem;
-          color: var(--text-muted, #888888);
+          color: #888888;
           margin-bottom: 12px;
           display: block;
         }
@@ -209,19 +218,19 @@ const Form = () => {
 
         .exact-chip-btn {
           background: transparent;
-          border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.2));
-          color: var(--text-white, #ffffff);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #ffffff;
           padding: 8px 14px;
-          border-radius: var(--radius-full, 100px);
+          border-radius: 100px;
           font-size: 0.8rem;
           cursor: pointer;
           transition: all 0.2s ease;
         }
 
         .exact-chip-btn.active, .exact-chip-btn:hover {
-          background: var(--text-white, #ffffff);
-          color: var(--color-secondary, #111115);
-          border-color: var(--text-white, #ffffff);
+          background: #ffffff;
+          color: #111115;
+          border-color: #ffffff;
         }
 
         .exact-form {
@@ -240,9 +249,9 @@ const Form = () => {
           width: 100%;
           background: transparent;
           border: none;
-          border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.2));
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
           padding: 12px 0;
-          color: var(--text-white, #ffffff);
+          color: #ffffff;
           font-size: 0.95rem;
           outline: none;
           box-sizing: border-box;
@@ -251,22 +260,22 @@ const Form = () => {
 
         .exact-input-group input::placeholder,
         .exact-input-group textarea::placeholder {
-          color: var(--text-muted, #777777);
+          color: #777777;
         }
 
         .exact-input-group input:focus,
         .exact-input-group textarea:focus {
-          border-bottom-color: var(--color-primary, #0066ff);
+          border-bottom-color: var(--primary-color, #0066ff);
         }
 
         .exact-submit-btn {
           margin-top: 10px;
           width: 100%;
           padding: 16px;
-          background: var(--color-primary, #0066ff);
-          color: #000000;
+          background: var(--primary-color, #0066ff);
+          color: #ffffff;
           border: none;
-          border-radius: var(--radius-sm, 8px);
+          border-radius: 8px;
           font-size: 0.95rem;
           font-weight: 700;
           cursor: pointer;
@@ -291,7 +300,7 @@ const Form = () => {
 
           .exact-left-panel {
             padding: 30px 24px;
-            gap: 40px;
+            gap: 30px;
           }
 
           .exact-right-panel {
@@ -304,15 +313,23 @@ const Form = () => {
         }
       `}</style>
 
-      <section className="exact-form-section" ref={sectionRef}>
-        <div className="exact-card-container">
-          
+      <section className="exact-form-section" ref={containerRef}>
+        {/* ANIMATED 3D PERSPECTIVE WRAPPER */}
+        <motion.div 
+          className="exact-card-container"
+          style={{
+            rotateX,
+            y,
+            scale,
+            opacity
+          }}
+        >
           {/* LEFT SIDE: CREATIVE CARD */}
           <div className="exact-left-panel">
             <div className="exact-profile-header">
               <div className="exact-user-info">
                 <img
-                  src= {DP}
+                  src={DP}
                   alt="OMAAN JALLANE"
                   className="exact-avatar"
                 />
@@ -359,7 +376,7 @@ const Form = () => {
             </div>
 
             <form ref={formRef} onSubmit={handleSubmit} className="exact-form">
-              {/* Hidden field for selected service */}
+              {/* HIDDEN FIELD FOR SELECTED SERVICE VALUE */}
               <input type="hidden" name="selected_service" value={selectedService} />
 
               <div className="exact-input-group">
@@ -403,8 +420,7 @@ const Form = () => {
               </button>
             </form>
           </div>
-
-        </div>
+        </motion.div>
       </section>
     </>
   );

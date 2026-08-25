@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../../styles/root.css';
-import Img from '../../assets/hero.png';
+import Img from '../../assets/hero.webp';
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {

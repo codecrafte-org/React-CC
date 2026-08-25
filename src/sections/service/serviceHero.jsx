@@ -15,7 +15,7 @@ const ServiceHero = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1200);
+    }, );
 
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;

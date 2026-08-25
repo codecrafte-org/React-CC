@@ -1,5 +1,6 @@
-import { useRef } from "react";
- 
+import { motion } from "framer-motion";
+import '../../styles/root.css';
+
 const SparklesIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ch-card-icon">
     <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
@@ -16,7 +17,7 @@ const ContactHero = () => {
   return (
     <>
       <style>{`
-        /* Local Component CSS - Using Your Existing Root Vars */
+        /* Local Component CSS */
         .ch-hero-wrapper {
           position: relative;
           width: calc(100% - 40px);
@@ -33,6 +34,7 @@ const ContactHero = () => {
           align-items: center;
           overflow: hidden;
           padding: 60px 20px;
+          font-family: var(--font-main, sans-serif);
         }
 
         .ch-bg-watermark {
@@ -56,6 +58,9 @@ const ContactHero = () => {
           text-align: center;
           max-width: 580px;
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .ch-spots-badge {
@@ -114,7 +119,7 @@ const ContactHero = () => {
         .ch-cta-button:hover {
           transform: translateY(-2px);
           box-shadow: var(--shadow-hover, 0 18px 40px rgba(0, 0, 0, 0.2));
-          background: var(--color-primary, #000000);
+          background: var(--primary-color, #0070f3);
         }
 
         .ch-floating-card {
@@ -133,7 +138,7 @@ const ContactHero = () => {
         .ch-card-right { right: 5%; bottom: 20%; transform: rotate(3deg); }
 
         .ch-card-icon {
-          color: var(--color-accent, #0070f3);
+          color: var(--primary-color, #0070f3);
           margin-bottom: 8px;
         }
 
@@ -150,9 +155,26 @@ const ContactHero = () => {
           line-height: 1.4;
         }
 
+        /* MOBILE RESPONSIVE OPTIMIZATION */
         @media (max-width: 900px) {
-          .ch-floating-card { position: static; transform: none; max-width: 100%; margin-top: 15px; }
-          .ch-hero-wrapper { flex-direction: column; text-align: center; }
+          .ch-hero-wrapper { 
+            flex-direction: column; 
+            text-align: center;
+            padding: 50px 16px;
+            min-height: auto;
+          }
+          .ch-floating-card { 
+            position: relative; 
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            transform: none !important; 
+            max-width: 100%; 
+            width: 100%;
+            margin-top: 20px; 
+            box-sizing: border-box;
+          }
         }
       `}</style>
 
@@ -160,39 +182,80 @@ const ContactHero = () => {
       <section className="ch-hero-wrapper">
         <div className="ch-bg-watermark">CONNECT</div>
 
-        <div className="ch-floating-card ch-card-left">
+        {/* LEFT CARD - FADE RIGHT/UP */}
+        <motion.div 
+          className="ch-floating-card ch-card-left"
+          initial={{ opacity: 0, x: -30, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
           <SparklesIcon />
           <h4 className="ch-card-title">100% Custom Architecture</h4>
           <p className="ch-card-desc">
             No templates used. Built completely from scratch matching your exact brand aesthetics.
           </p>
-        </div>
+        </motion.div>
 
+        {/* CENTER MAIN CONTENT */}
         <div className="ch-main-content">
-          <div className="ch-spots-badge">Booking Active</div>
-          <h2 className="ch-main-heading">
+          {/* BADGE - FADE DOWN */}
+          <motion.div 
+            className="ch-spots-badge"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            Booking Active
+          </motion.div>
+
+          {/* HEADING - FADE DOWN */}
+          <motion.h2 
+            className="ch-main-heading"
+            initial={{ opacity: 0, y: -25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
             Have a Project?<br />Let's Work Together
-          </h2>
-          <p className="ch-sub-text">
+          </motion.h2>
+
+          {/* SUBTEXT - FADE UP */}
+          <motion.p 
+            className="ch-sub-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          >
             Catch up for a friendly chat about your startup vision, product ideas, or design requirements. Let's create something premium!
-          </p>
-          <a href="tel:03059462051" className="ch-cta-button">
-            Book a Strategy Call
-          </a>
+          </motion.p>
+
+          {/* BUTTON - FADE UP */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          >
+            <a href="tel:03059462051" className="ch-cta-button">
+              Book a Strategy Call
+            </a>
+          </motion.div>
         </div>
 
-        <div className="ch-floating-card ch-card-right">
+        {/* RIGHT CARD - FADE LEFT/UP */}
+        <motion.div 
+          className="ch-floating-card ch-card-right"
+          initial={{ opacity: 0, x: 30, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        >
           <ZapIcon />
           <h4 className="ch-card-title">Buttery Smooth Scaling</h4>
           <p className="ch-card-desc">
             Optimized pixel-perfect layouts responding flawlessly across all viewport sizes.
           </p>
-        </div>
+        </motion.div>
       </section>
     </>
   );
 };
 
 export default ContactHero;
-
-

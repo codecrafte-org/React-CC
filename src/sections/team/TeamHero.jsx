@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import '../../styles/root.css';
 
-import TeamBannerImg from '../../assets/teambanner.png'; 
+import TeamBannerImg from '../../assets/teambanner.webp'; 
 
 const TeamHero = () => {
   const [isVisible, setIsVisible] = useState(false);

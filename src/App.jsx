@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Team from './pages/Team';
-import Story from './pages/Story';
+import About from './pages/About.jsx';
 import Contact from './pages/Contact';
-import Services from './pages/service';
+import Services from './pages/Service';
 import ServiceDetail from './pages/ServiceDetail'; 
 
 //Privay
@@ -37,7 +37,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<Team />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/story" element={<Story />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
         {/* 2. Dynamic Route for Individual Service Details */}
